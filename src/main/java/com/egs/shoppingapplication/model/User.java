@@ -36,17 +36,13 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private boolean locked = false;
 
-    @Column(nullable = false)
-    private boolean enabled = false;
-
     @Builder
     public User(UUID id, Timestamp createdAt, Timestamp updatedAt, String username,
-                String password, RoleEnum role, boolean locked, boolean enabled) {
+                String password, RoleEnum role, boolean locked) {
         super(id, createdAt, updatedAt);
         this.username = username;
         this.password = password;
         this.role = role;
         this.locked = locked;
-        this.enabled = enabled;
     }
 }
