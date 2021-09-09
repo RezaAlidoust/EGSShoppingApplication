@@ -12,7 +12,7 @@
     <artifactId>ShoppingApplication</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ShoppingApplication</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Shopping Application for EGS</description>
     <properties>
         <java.version>11</java.version>
         <jwt.version>0.11.2</jwt.version>
