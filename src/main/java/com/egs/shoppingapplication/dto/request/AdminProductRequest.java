@@ -15,7 +15,7 @@ public class AdminProductRequest {
     @JsonProperty(required = true)
     @NotEmpty
     @NotBlank
-    @Length(min = 3, message = "Minimum name length: 3 characters")
+    @Length(min = 2, message = "Minimum name length: 3 characters")
     private String name;
 
     @Min(value = 0)

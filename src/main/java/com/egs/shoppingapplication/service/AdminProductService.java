@@ -19,12 +19,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class ProductService {
+public class AdminProductService {
     final ProductRepository productRepository;
 
     final CategoryRepository categoryRepository;
 
-    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    public AdminProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
     }
@@ -55,6 +55,8 @@ public class ProductService {
                 .name(request.getName())
                 .price(request.getPrice())
                 .build();
+        product = productRepository.save(product);
+
         category.addProduct(product);
         categoryRepository.save(category);
 

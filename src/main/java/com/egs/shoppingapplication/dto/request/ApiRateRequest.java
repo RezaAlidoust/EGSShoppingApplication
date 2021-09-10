@@ -12,8 +12,6 @@ import javax.validation.constraints.NotEmpty;
 public class ApiRateRequest {
 
     @JsonProperty(required = true)
-    @NotEmpty
-    @NotBlank
     @Min(value = 1)
     @Max(value = 5)
     private int rate;

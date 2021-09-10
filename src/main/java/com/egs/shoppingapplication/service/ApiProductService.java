@@ -5,12 +5,11 @@ import com.egs.shoppingapplication.dto.request.ApiProductSearchRequest;
 import com.egs.shoppingapplication.dto.request.ApiRateRequest;
 import com.egs.shoppingapplication.dto.response.ApiProductListResponse;
 import com.egs.shoppingapplication.exception.CustomException;
-import com.egs.shoppingapplication.model.Product;
-import com.egs.shoppingapplication.model.ProductComment;
-import com.egs.shoppingapplication.model.ProductRating;
-import com.egs.shoppingapplication.model.User;
+import com.egs.shoppingapplication.model.*;
 import com.egs.shoppingapplication.model.dao.ProductSpecification;
 import com.egs.shoppingapplication.model.dao.ProductSpecificationsBuilder;
+import com.egs.shoppingapplication.repository.ProductCommentRepository;
+import com.egs.shoppingapplication.repository.ProductRatingRepository;
 import com.egs.shoppingapplication.repository.ProductRepository;
 import com.egs.shoppingapplication.repository.UserRepository;
 import com.egs.shoppingapplication.util.SearchOperation;
@@ -29,10 +28,17 @@ import java.util.UUID;
 public class ApiProductService {
     final ProductRepository productRepository;
     final UserRepository userRepository;
+    final ProductRatingRepository productRatingRepository;
+    final ProductCommentRepository productCommentRepository;
 
-    public ApiProductService(ProductRepository productRepository, UserRepository userRepository) {
+    public ApiProductService(ProductRepository productRepository,
+                             UserRepository userRepository,
+                             ProductRatingRepository productRatingRepository,
+                             ProductCommentRepository productCommentRepository) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.productRatingRepository = productRatingRepository;
+        this.productCommentRepository = productCommentRepository;
     }
 
 
@@ -85,6 +91,7 @@ public class ApiProductService {
                 .build();
         productComment.setProduct(productOptional.get());
         productComment.setUser(user);
+        productCommentRepository.save(productComment);
     }
 
     public void createRate(String productId, ApiRateRequest request, String username) {
@@ -99,5 +106,7 @@ public class ApiProductService {
                 .build();
         rating.setProduct(productOptional.get());
         rating.setUser(user);
+        rating.setId(new ProductRatingKey());
+        productRatingRepository.save(rating);
     }
 }

@@ -4,7 +4,7 @@ import com.egs.shoppingapplication.dto.request.AdminProductRequest;
 import com.egs.shoppingapplication.dto.request.SortEnumRequest;
 import com.egs.shoppingapplication.dto.response.AdminCategoryWithProductsResponse;
 import com.egs.shoppingapplication.dto.response.AdminProductResponse;
-import com.egs.shoppingapplication.service.ProductService;
+import com.egs.shoppingapplication.service.AdminProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,9 +20,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController(value = "AdminProductController")
 @RequestMapping(path = {"/admin/categories/{categoryId}/products"}, produces = APPLICATION_JSON_VALUE)
 public class AdminProductController {
-    final ProductService productService;
+    final AdminProductService productService;
 
-    public AdminProductController(ProductService productService) {
+    public AdminProductController(AdminProductService productService) {
         this.productService = productService;
     }
 

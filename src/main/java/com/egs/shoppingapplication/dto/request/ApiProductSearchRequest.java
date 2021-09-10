@@ -6,12 +6,13 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 
 @Data
 public class ApiProductSearchRequest {
 
-    @Length(min = 3, message = "Minimum name length: 3 characters")
+    @Length(min = 2, message = "Minimum name length: 3 characters")
     private String name;
 
     @Min(value = 0)
@@ -24,5 +25,5 @@ public class ApiProductSearchRequest {
 
     @Min(value = 1)
     @Max(value = 5)
-    private int rate;
+    private Integer rate;
 }
