@@ -1,7 +1,9 @@
 package com.egs.shoppingapplication.controller.api;
 
 
+import com.egs.shoppingapplication.dto.request.ApiCommentRequest;
 import com.egs.shoppingapplication.dto.request.ApiProductSearchRequest;
+import com.egs.shoppingapplication.dto.request.ApiRateRequest;
 import com.egs.shoppingapplication.dto.request.SortEnumRequest;
 import com.egs.shoppingapplication.dto.response.AdminUserResponse;
 import com.egs.shoppingapplication.dto.response.ApiProductListResponse;
@@ -12,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,5 +47,31 @@ public class ApiProductController {
                                                          @Valid @RequestBody ApiProductSearchRequest request) {
         final ApiProductListResponse user = apiProductService.search(request, page, size, sort.name(), direction);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    @Operation(summary = "Comment")
+    @ApiResponse(responseCode = "201", description = "Comment is created!")
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "403", description = "Forbidden!")
+    @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, value = "/{productId}/comment")
+    public ResponseEntity<Void> createComment(@PathVariable String productId,
+                                              @Valid @RequestBody ApiCommentRequest request,
+                                              Authentication authentication) {
+        apiProductService.createComment(productId, request, authentication.getName());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @Operation(summary = "Rate")
+    @ApiResponse(responseCode = "201", description = "Rate is created!")
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "403", description = "Forbidden!")
+    @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, value = "/{productId}/rate")
+    public ResponseEntity<Void> createRate(@PathVariable String productId,
+                                           @Valid @RequestBody ApiRateRequest request,
+                                           Authentication authentication) {
+        apiProductService.createRate(productId, request, authentication.getName());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

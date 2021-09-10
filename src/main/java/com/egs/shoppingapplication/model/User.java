@@ -7,12 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -35,6 +33,9 @@ public class User extends BaseEntity {
 
     @Column(nullable = false)
     private boolean locked = false;
+
+    @OneToMany(mappedBy = "user")
+    private Set<ProductComment> productComments;
 
     @Builder
     public User(UUID id, Timestamp createdAt, Timestamp updatedAt, String username,

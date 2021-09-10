@@ -24,5 +24,5 @@ public class ApiProductSearchRequest {
 
     @Min(value = 1)
     @Max(value = 5)
-    private float rate;
+    private int rate;
 }

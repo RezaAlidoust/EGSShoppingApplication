@@ -87,8 +87,8 @@ public class AdminProductController {
     @ApiResponse(responseCode = "403", description = "Forbidden!")
     @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
     @DeleteMapping(value = {"/{productId}"})
-    public ResponseEntity.BodyBuilder delete(@PathVariable String categoryId, @PathVariable String productId) {
+    public ResponseEntity<Void> delete(@PathVariable String categoryId, @PathVariable String productId) {
         productService.delete(categoryId, productId);
-        return ResponseEntity.status(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

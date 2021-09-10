@@ -12,6 +12,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -30,6 +31,9 @@ public class Product extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductComment> productComments;
 
     @Builder
     public Product(UUID id, Timestamp createdAt, Timestamp updatedAt, String name, BigDecimal price) {
