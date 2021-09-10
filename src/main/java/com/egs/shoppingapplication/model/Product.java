@@ -29,7 +29,6 @@ public class Product extends BaseEntity {
     private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
     private Category category;
 
     @Builder
@@ -37,5 +36,15 @@ public class Product extends BaseEntity {
         super(id, createdAt, updatedAt);
         this.name = name;
         this.price = price;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product )) return false;
+        return getId() != null && getId().equals(((Product) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

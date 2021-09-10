@@ -25,11 +25,11 @@ public class DatabaseRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-//        userRepository.save(User.builder()
-//                .username("reza")
-//                .password(passwordEncoder.encode("911411328mM@"))
-//                .role(RoleEnum.ROLE_ADMIN)
-//                .build());
+        userRepository.save(User.builder()
+                .username("reza")
+                .password(passwordEncoder.encode("911411328mM@"))
+                .role(RoleEnum.ROLE_ADMIN)
+                .build());
         logger.warn("add default user.");
     }
 }
