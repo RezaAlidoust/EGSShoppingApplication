@@ -1,4 +1,4 @@
-package com.egs.shoppingapplication.repository;
+package com.egs.shoppingapplication.model.dao;
 
 import com.egs.shoppingapplication.model.Product;
 import com.egs.shoppingapplication.util.SpecSearchCriteria;
@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 
 public class ProductSpecification implements Specification<Product> {
 
-    private SpecSearchCriteria criteria;
+    private final SpecSearchCriteria criteria;
 
     public ProductSpecification(final SpecSearchCriteria criteria) {
         super();

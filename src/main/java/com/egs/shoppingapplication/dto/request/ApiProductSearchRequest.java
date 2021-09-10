@@ -1,5 +1,6 @@
 package com.egs.shoppingapplication.dto.request;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Digits;
@@ -7,7 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
-public class ApiProductRequest {
+@Data
+public class ApiProductSearchRequest {
 
     @Length(min = 3, message = "Minimum name length: 3 characters")
     private String name;

@@ -6,12 +6,12 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class AdminProductResponse {
+public class ApiProductResponse {
     private String id;
     private String name;
     private BigDecimal price;
 
-    public AdminProductResponse(Product product) {
+    public ApiProductResponse(Product product) {
         if (product != null) {
             this.id = product.getId().toString();
             this.name = product.getName();

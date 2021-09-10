@@ -1,6 +1,6 @@
 package com.egs.shoppingapplication.dto.response;
 
-import com.egs.shoppingapplication.model.Category;
+import com.egs.shoppingapplication.model.Product;
 import lombok.Data;
 import org.springframework.data.domain.Page;
 
@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class AdminCategoryListResponse {
-    private List<AdminCategoryResponse> categories = null;
+public class ApiProductListResponse {
+    private List<ApiProductResponse> products = null;
     private long count;
 
-    public AdminCategoryListResponse(Page<Category> categories, long count) {
-        if (categories != null)
-            this.categories = categories.getContent().stream().map(AdminCategoryResponse::new).collect(Collectors.toList());
+    public ApiProductListResponse(Page<Product> products, long count) {
+        if (products != null)
+            this.products = products.getContent().stream().map(ApiProductResponse::new).collect(Collectors.toList());
         this.count = count;
     }
 }
