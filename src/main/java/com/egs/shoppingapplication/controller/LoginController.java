@@ -1,6 +1,7 @@
 package com.egs.shoppingapplication.controller;
 
 import com.egs.shoppingapplication.dto.request.LoginRequest;
+import com.egs.shoppingapplication.dto.response.ApiUserResponse;
 import com.egs.shoppingapplication.dto.response.JwtResponse;
 import com.egs.shoppingapplication.service.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,6 +35,17 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<JwtResponse> loginWithPassword(@Valid @RequestBody LoginRequest authenticationRequest) {
         JwtResponse loginWithPassword = loginService.loginWithPassword(authenticationRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(loginWithPassword);
+    }
+
+    @Operation(summary = "Register")
+    @ApiResponse(responseCode = "200", description = "Authentication is done", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiUserResponse.class))})
+    @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiUserResponse.class))})
+    @ApiResponse(responseCode = "422", description = "Invalid username/password supplied", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiUserResponse.class))})
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public ResponseEntity<ApiUserResponse> signUp(@Valid @RequestBody LoginRequest authenticationRequest) {
+        ApiUserResponse loginWithPassword = loginService.signUp(authenticationRequest);
         return ResponseEntity.status(HttpStatus.OK).body(loginWithPassword);
     }
 }
