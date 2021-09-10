@@ -12,10 +12,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryService {
+public class AdminCategoryService {
     final CategoryRepository categoryRepository;
 
-    public CategoryService(CategoryRepository categoryRepository) {
+    public AdminCategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 

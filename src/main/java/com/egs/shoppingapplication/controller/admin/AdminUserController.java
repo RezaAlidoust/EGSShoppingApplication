@@ -28,9 +28,9 @@ public class AdminUserController {
 
     @Operation(summary = "Create the user")
     @ApiResponse(responseCode = "201", description = "User is created", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
-    @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
-    @ApiResponse(responseCode = "403", description = "Forbidden!", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
-    @ApiResponse(responseCode = "422", description = "Some inputs have errors!", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "403", description = "Forbidden!")
+    @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<AdminUserResponse> create(@Valid @RequestBody AdminUserRequest request) {
         final AdminUserResponse user = adminUserService.create(request);
@@ -38,10 +38,10 @@ public class AdminUserController {
     }
 
     @Operation(summary = "Update user details, Can be used for block and unblock a user")
-    @ApiResponse(responseCode = "201", description = "User is created", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
-    @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
-    @ApiResponse(responseCode = "403", description = "Forbidden!", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
-    @ApiResponse(responseCode = "422", description = "Some inputs have errors!", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
+    @ApiResponse(responseCode = "201", description = "User is updated", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "403", description = "Forbidden!")
+    @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
     @PutMapping(value = "/{userId}")
     public ResponseEntity<AdminUserResponse> update(@PathVariable String userId, @Valid @RequestBody AdminUserUpdateRequest request) {
         final AdminUserResponse user = adminUserService.update(userId, request);

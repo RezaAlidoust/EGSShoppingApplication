@@ -5,7 +5,6 @@ import com.egs.shoppingapplication.dto.request.ApiCommentRequest;
 import com.egs.shoppingapplication.dto.request.ApiProductSearchRequest;
 import com.egs.shoppingapplication.dto.request.ApiRateRequest;
 import com.egs.shoppingapplication.dto.request.SortEnumRequest;
-import com.egs.shoppingapplication.dto.response.AdminUserResponse;
 import com.egs.shoppingapplication.dto.response.ApiProductListResponse;
 import com.egs.shoppingapplication.service.ApiProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +30,8 @@ public class ApiProductController {
     }
 
     @Operation(summary = "Search for products")
-    @ApiResponse(responseCode = "200", description = "search is done!", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminUserResponse.class))})
+    @ApiResponse(responseCode = "200", description = "search is done!",
+            content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiProductListResponse.class))})
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "403", description = "Forbidden!")
     @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
@@ -46,7 +46,7 @@ public class ApiProductController {
                                                                  defaultValue = "desc") String direction,
                                                          @Valid @RequestBody ApiProductSearchRequest request) {
         final ApiProductListResponse user = apiProductService.search(request, page, size, sort.name(), direction);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @Operation(summary = "Comment")
