@@ -26,8 +26,13 @@ public class BaseEntity {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
+<<<<<<< Updated upstream
     @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+=======
+    @org.hibernate.annotations.Type(type="org.hibernate.type.UUIDCharType")
+    @Column(name = "id", length = 36, updatable = false, nullable = false)
+>>>>>>> Stashed changes
     private UUID id;
 
     @CreationTimestamp
