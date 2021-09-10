@@ -27,9 +27,12 @@ public class BaseEntity {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
 =======
+=======
+>>>>>>> Stashed changes
     @org.hibernate.annotations.Type(type="org.hibernate.type.UUIDCharType")
     @Column(name = "id", length = 36, updatable = false, nullable = false)
 >>>>>>> Stashed changes
