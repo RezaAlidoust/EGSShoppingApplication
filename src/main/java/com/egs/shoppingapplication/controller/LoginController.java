@@ -29,8 +29,8 @@ public class LoginController {
 
     @Operation(summary = "Authenticate")
     @ApiResponse(responseCode = "200", description = "Authentication is done", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = JwtResponse.class))})
-    @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = JwtResponse.class))})
-    @ApiResponse(responseCode = "422", description = "Invalid username/password supplied", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = JwtResponse.class))})
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "422", description = "Invalid username/password supplied")
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<JwtResponse> loginWithPassword(@Valid @RequestBody LoginRequest authenticationRequest) {
@@ -40,8 +40,8 @@ public class LoginController {
 
     @Operation(summary = "Register")
     @ApiResponse(responseCode = "200", description = "Authentication is done", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiUserResponse.class))})
-    @ApiResponse(responseCode = "401", description = "Unauthorized", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiUserResponse.class))})
-    @ApiResponse(responseCode = "422", description = "Invalid username/password supplied", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiUserResponse.class))})
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "422", description = "Invalid username/password supplied")
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity<ApiUserResponse> signUp(@Valid @RequestBody LoginRequest authenticationRequest) {

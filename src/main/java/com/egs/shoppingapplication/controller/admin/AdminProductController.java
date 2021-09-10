@@ -71,18 +71,18 @@ public class AdminProductController {
     }
 
     @Operation(summary = "Update product")
-    @ApiResponse(responseCode = "200", description = "product is created", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminProductResponse.class))})
+    @ApiResponse(responseCode = "200", description = "product is updated", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminProductResponse.class))})
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "403", description = "Forbidden!")
     @ApiResponse(responseCode = "422", description = "Some inputs have errors!")
     @PutMapping(value = {"/{productId}"})
-    public ResponseEntity<AdminProductResponse> create(@PathVariable String categoryId, @PathVariable String productId, @Valid @RequestBody AdminProductRequest request) {
+    public ResponseEntity<AdminProductResponse> update(@PathVariable String categoryId, @PathVariable String productId, @Valid @RequestBody AdminProductRequest request) {
         final AdminProductResponse product = productService.update(categoryId, productId, request);
         return ResponseEntity.status(HttpStatus.OK).body(product);
     }
 
-    @Operation(summary = "Update product")
-    @ApiResponse(responseCode = "200", description = "product is created", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = AdminProductResponse.class))})
+    @Operation(summary = "Delete product")
+    @ApiResponse(responseCode = "200", description = "product is deleted")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "403", description = "Forbidden!")
     @ApiResponse(responseCode = "422", description = "Some inputs have errors!")

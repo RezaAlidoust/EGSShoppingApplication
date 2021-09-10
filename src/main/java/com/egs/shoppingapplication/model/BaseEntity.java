@@ -25,7 +25,7 @@ public class BaseEntity {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @org.hibernate.annotations.Type(type="org.hibernate.type.UUIDCharType")
+    @org.hibernate.annotations.Type(type = "org.hibernate.type.UUIDCharType")
     @Column(name = "id", length = 36, updatable = false, nullable = false)
     private UUID id;
 
